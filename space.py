@@ -11,14 +11,14 @@ st.set_page_config(
     page_icon=":🚀:",
     layout="wide", )
 
-with open ("C:/Users/Basia/Desktop/space/streamlit.css") as f:
+with open ("streamlit.css") as f:
     st.markdown(f'<style> {f.read()} </style>', unsafe_allow_html=True)
 
 
 # READ EXCEL
 @st.cache_data
 def read_data():
-    df = pd.read_csv('C:/Users/Basia/Downloads/Space_Missions.csv')
+    df = pd.read_csv('Space_Missions.csv')
     return df
 
 df = read_data()
@@ -28,8 +28,8 @@ df[['LocationPart', 'Country']] = df['Location'].apply(lambda x: pd.Series(str(x
 df[['RocketName', 'Mission']] = df['Detail'].apply(lambda x: pd.Series(str(x).split('|', 1)))
 df = df.iloc[:, 2:]
 df['Year'] = pd.to_datetime(df['Date'], format='%a %b %d, %Y').dt.year
-image_sider= Image.open("C:/Users/Basia/Desktop/space/imgs/pexels-alex-andrews-271121-1983032.jpg")
-image= Image.open("C:/Users/Basia/Desktop/space/imgs/pexels-spacex-23769.jpg")
+image_sider= Image.open("imgs/pexels-alex-andrews-271121-1983032.jpg")
+image= Image.open("imgs/pexels-spacex-23769.jpg")
 
 # SIDEBAR
 with st.sidebar:
